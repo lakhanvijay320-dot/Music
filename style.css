@@ -1,0 +1,406 @@
+:root {
+    --bg-dark: #0f0f13;
+    --bg-surface: #1c1c21;
+    --bg-surface-elevated: #282830;
+    --primary-color: #ff3366;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a8;
+    --border-color: #33333d;
+    --player-height: 80px;
+    --nav-height: 65px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* Header */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    background-color: rgba(15, 15, 19, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-color);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.spotify-btn {
+    background-color: #1DB954; /* Spotify Green */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.spotify-btn:active {
+    opacity: 0.7;
+}
+
+/* Main Content */
+main {
+    padding: 0 20px calc(var(--player-height) + var(--nav-height) + 40px) 20px;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 25px 0 15px 0;
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    width: 100%;
+    margin-left: 10px;
+    outline: none;
+}
+
+.search-icon {
+    color: var(--text-secondary);
+}
+
+/* Horizontal Scroll */
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+    scrollbar-width: none; /* Firefox */
+}
+.horizontal-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+/* Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.card:active {
+    background-color: var(--bg-surface-elevated);
+}
+
+.card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    background-color: var(--bg-surface-elevated);
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+.playlist-1 { background-image: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); }
+.playlist-2 { background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); }
+.featured-1 { background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); }
+.featured-2 { background-image: linear-gradient(to top, #fa709a 0%, #fee140 100%); }
+
+.genre-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* Track Lists */
+.track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--bg-surface);
+    cursor: pointer;
+}
+
+.track-item:active {
+    background-color: var(--bg-surface-elevated);
+}
+
+.track-item-art {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    background-color: var(--bg-surface-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.track-item-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.track-item-title {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-item-artist {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Upload Button */
+.upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-surface-elevated);
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.upload-btn input[type="file"] {
+    display: none;
+}
+
+/* Empty States */
+.empty-state {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 20px;
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    width: 100%;
+}
+
+/* Bottom Player */
+.bottom-player {
+    position: fixed;
+    bottom: var(--nav-height);
+    left: 0;
+    width: 100%;
+    height: var(--player-height);
+    background-color: rgba(28, 28, 33, 0.95);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid var(--border-color);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-container {
+    height: 3px;
+    width: 100%;
+    background-color: var(--bg-surface-elevated);
+    cursor: pointer;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--primary-color);
+    transition: width 0.1s linear;
+}
+
+.player-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    height: 100%;
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 35%;
+    overflow: hidden;
+}
+
+.album-art {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    background-color: var(--bg-surface-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.track-text {
+    overflow: hidden;
+}
+
+.track-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.control-btn:active { opacity: 0.7; }
+
+.play-btn {
+    background-color: var(--text-primary);
+    color: var(--bg-dark);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 20%;
+}
+
+.volume-control input[type="range"] {
+    width: 100%;
+    accent-color: var(--primary-color);
+}
+
+/* Hide volume control on very small mobile screens */
+@media (max-width: 600px) {
+    .volume-control { display: none; }
+    .track-info { width: 50%; }
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background-color: var(--bg-dark);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 95;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    gap: 4px;
+    width: 60px;
+    height: 100%;
+}
+
+.nav-item.active {
+    color: var(--primary-color);
+}
+
+.nav-item span.material-symbols-rounded {
+    font-size: 26px;
+}
+
